@@ -23,7 +23,7 @@ const nextConfig = {
   // Disable static optimization for problematic pages
   trailingSlash: true,
   // Ensure proper static export
-  distDir: 'out',
+  // distDir: 'out',
 };
 
 module.exports = nextConfig;
