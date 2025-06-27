@@ -313,7 +313,7 @@ export const HeroHeader = memo(() => {
                             className="w-full px-4 py-3 rounded-full bg-gray-900 text-white font-medium flex items-center justify-center text-sm transition-colors duration-300 hover:bg-purple-900"
                         >
                             <Link href="/contact">
-                                Get Started For Free <ArrowRight className="ml-2 h-4 w-4" />
+                                Get Started  <ArrowRight className="ml-2 h-4 w-4" />
                             </Link>
                         </Button>
                     </div>
