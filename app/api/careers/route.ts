@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY || 're_DqSZhzVP_MKruoqTkirbwRKSAidL48jBq');
+const resend = new Resend(process.env.RESEND_API_KEY || 're_V8rGhFu2_2tjRMxcyArnKghSokfcJ2Jum');
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     const { fullName, email, phone, position, department, experience, expectedSalary, resumeLink, coverLetter } = data;
 
     // Debug: Log the API key (first few characters only)
-    const apiKey = process.env.RESEND_API_KEY || 're_DqSZhzVP_MKruoqTkirbwRKSAidL48jBq';
+    const apiKey = process.env.RESEND_API_KEY || 're_V8rGhFu2_2tjRMxcyArnKghSokfcJ2Jum';
     console.log('API Key available:', apiKey ? `${apiKey.substring(0, 10)}...` : 'No API key');
 
     // Validate required fields
