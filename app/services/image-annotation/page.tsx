@@ -35,7 +35,6 @@ export default function ImageAnnotation() {
     {
       title: "2D Bounding Boxes",
       description: "Used to define and localize objects in 2D space. Ideal for object detection in static images or video frames across industries like retail, security, and autonomous driving.",
-      icon: Box,
       emoji: "🟦",
       applications: ["Object Detection", "Retail Analysis", "Security Systems", "Autonomous Driving"],
       image: "/imagean.jpeg"
@@ -43,7 +42,6 @@ export default function ImageAnnotation() {
     {
       title: "3D Cuboid Annotation",
       description: "Adds depth to object detection by capturing the full 3D structure of an object. Useful in automotive, robotics, and AR/VR applications where understanding object volume and spatial orientation is crucial.",
-      icon: Box,
       emoji: "📦",
       applications: ["Automotive", "Robotics", "AR/VR", "Spatial Analysis"],
       image: "/3Dcuboid.jpg"
@@ -51,7 +49,6 @@ export default function ImageAnnotation() {
     {
       title: "Landmark Annotation",
       description: "Involves plotting key points to detect facial expressions, body parts, or object shapes. Often used in facial recognition, emotion detection, and biometrics.",
-      icon: MapPin,
       emoji: "📍",
       applications: ["Facial Recognition", "Emotion Detection", "Biometrics", "Medical Imaging"],
       image: "/landmark.jpg"
@@ -59,7 +56,6 @@ export default function ImageAnnotation() {
     {
       title: "Skeletal Annotation",
       description: "Tracks human posture and movement by annotating joints and limbs. Critical for health-tech applications, motion analysis, and AI-based fitness or rehabilitation platforms.",
-      icon: Activity,
       emoji: "🦴",
       applications: ["Health-tech", "Motion Analysis", "Fitness AI", "Rehabilitation"],
       image: "/skeletal.jpg"
@@ -67,7 +63,6 @@ export default function ImageAnnotation() {
     {
       title: "Polygon Annotation",
       description: "Allows precise object outlining, even for irregular shapes. Ideal for image segmentation tasks like labeling street signs, animals, products, and complex items in cluttered environments.",
-      icon: Layers,
       emoji: "🔺",
       applications: ["Image Segmentation", "Product Labeling", "Environmental Analysis", "Complex Objects"],
       image: "/polygon.jpg"
@@ -75,7 +70,6 @@ export default function ImageAnnotation() {
     {
       title: "Semantic Segmentation",
       description: "Segments every pixel in an image by class, offering pixel-level precision. Perfect for autonomous vehicles, agricultural insights, and medical imaging datasets.",
-      icon: Palette,
       emoji: "🌈",
       applications: ["Autonomous Vehicles", "Agricultural AI", "Medical Imaging", "Pixel-level Analysis"],
       image: "/semantic.jpg"
@@ -83,7 +77,6 @@ export default function ImageAnnotation() {
     {
       title: "Polyline Annotation",
       description: "Used for lane detection in autonomous vehicles and road feature recognition. Polylines guide path planning and navigation by identifying roads, powerlines, or boundaries in images.",
-      icon: Minus,
       emoji: "➖",
       applications: ["Lane Detection", "Path Planning", "Navigation", "Infrastructure Mapping"],
       image: "/polyline.jpg"
@@ -171,17 +164,15 @@ export default function ImageAnnotation() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute top-4 left-4">
-                    <div className="h-12 w-12 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center">
-                      <span className="text-2xl">{tool.emoji}</span>
-                    </div>
-                  </div>
                 </div>
                 
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-3 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-                    {tool.title}
-                  </h3>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-2xl">{tool.emoji}</span>
+                    <h3 className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                      {tool.title}
+                    </h3>
+                  </div>
                   <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
                     {tool.description}
                   </p>
