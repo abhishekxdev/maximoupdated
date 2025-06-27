@@ -15,7 +15,10 @@ export default function DataServices() {
       features: [
         "Object detection",
         "Segmentation",
+        "2D Bounding Boxes",
+        "Semantic Segmentation",
         "Tagging"
+        
       ],
       applications: ["Autonomous Vehicles", "Medical Imaging", "Retail AI"],
       image: "/imagean.jpeg",
