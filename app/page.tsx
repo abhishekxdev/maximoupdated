@@ -54,24 +54,24 @@ export default function Home() {
             items={[
               {
                 id: 1,
+                title: "Data Annotation",
+                description: "Precise labeling and annotation services for images, videos, text, and audio to train your AI models.",
+                features: ["Image & Video", "Text & Audio", "Quality Assurance"],
+                image: "/textan.jpeg"
+              },
+              {
+                id: 2,
                 title: "Data Collection",
                 description: "Comprehensive data gathering services from multiple sources to build robust datasets for your AI and machine learning projects.",
                 features: ["Multi-source Collection", "Quality Validation", "Structured Formatting"],
                 image: "/datacollection.jpeg"
               },
               {
-                id: 2,
+                id: 3,
                 title: "Data Entry",
                 description: "Accurate and efficient manual data entry services to digitize and organize your business information.",
                 features: ["Manual Entry", "Double Verification", "Error Checking"],
                 image: "/dataentry.jpeg"
-              },
-              {
-                id: 3,
-                title: "Data Annotation",
-                description: "Precise labeling and annotation services for images, videos, text, and audio to train your AI models.",
-                features: ["Image & Video", "Text & Audio", "Quality Assurance"],
-                image: "/textan.jpeg"
               },
               {
                 id: 4,
