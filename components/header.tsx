@@ -25,8 +25,9 @@ const menuItems = [
     { name: 'Why Choose Us', href: '/why-choose-us' },
     { 
         name: 'Resources', 
-        href: '/resources',
+        href: '#',
         hasDropdown: true,
+        isDropdownOnly: true,
         dropdownItems: [
             { name: 'Careers', href: '/careers' }
         ]
@@ -45,24 +46,43 @@ const MenuItem = memo(({ item, isActive, onClick }: { item: any, isActive: boole
                 onMouseEnter={() => setIsDropdownOpen(true)}
                 onMouseLeave={() => setIsDropdownOpen(false)}
             >
-                <Link
-                    href={item.href}
-                    onClick={onClick}
-                    className={cn(
-                        'font-medium transition-all duration-300 text-sm lg:text-base relative pb-1 flex items-center gap-1 px-3 py-2 md:px-0 md:py-0',
-                        isActive 
-                            ? 'text-purple-900' 
-                            : 'text-gray-600 hover:text-purple-900'
-                    )}>
-                    {item.name}
-                    <ChevronDown className={cn(
-                        "h-4 w-4 transition-transform duration-200",
-                        isDropdownOpen ? "rotate-180" : ""
-                    )} />
-                    {isActive && (
-                        <span className="absolute bottom-0 left-3 md:left-0 right-3 md:right-0 h-0.5 bg-purple-900 rounded-full"></span>
-                    )}
-                </Link>
+                {item.isDropdownOnly ? (
+                    <button
+                        className={cn(
+                            'font-medium transition-all duration-300 text-sm lg:text-base relative pb-1 flex items-center gap-1 px-3 py-2 md:px-0 md:py-0 cursor-pointer',
+                            isActive 
+                                ? 'text-purple-900' 
+                                : 'text-gray-600 hover:text-purple-900'
+                        )}>
+                        {item.name}
+                        <ChevronDown className={cn(
+                            "h-4 w-4 transition-transform duration-200",
+                            isDropdownOpen ? "rotate-180" : ""
+                        )} />
+                        {isActive && (
+                            <span className="absolute bottom-0 left-3 md:left-0 right-3 md:right-0 h-0.5 bg-purple-900 rounded-full"></span>
+                        )}
+                    </button>
+                ) : (
+                    <Link
+                        href={item.href}
+                        onClick={onClick}
+                        className={cn(
+                            'font-medium transition-all duration-300 text-sm lg:text-base relative pb-1 flex items-center gap-1 px-3 py-2 md:px-0 md:py-0',
+                            isActive 
+                                ? 'text-purple-900' 
+                                : 'text-gray-600 hover:text-purple-900'
+                        )}>
+                        {item.name}
+                        <ChevronDown className={cn(
+                            "h-4 w-4 transition-transform duration-200",
+                            isDropdownOpen ? "rotate-180" : ""
+                        )} />
+                        {isActive && (
+                            <span className="absolute bottom-0 left-3 md:left-0 right-3 md:right-0 h-0.5 bg-purple-900 rounded-full"></span>
+                        )}
+                    </Link>
+                )}
                 
                 {/* Desktop Dropdown */}
                 <div className={cn(
