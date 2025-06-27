@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { headers } from 'next/headers';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY || 're_DqSZhzVP_MKruoqTkirbwRKSAidL48jBq');
@@ -30,6 +31,10 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    // Get headers using Next.js headers() function
+    const headersList = headers();
+    const clientIP = headersList.get('x-forwarded-for') || 'Unknown';
 
     // Create HTML email content
     const htmlContent = `
@@ -67,7 +72,7 @@ export async function POST(request: NextRequest) {
         <div style="background-color: #e9ecef; padding: 15px; border-radius: 5px; font-size: 14px; color: #6c757d;">
           <strong>Submission Details:</strong><br>
           Date: ${new Date().toLocaleString()}<br>
-          IP Address: ${request.headers.get('x-forwarded-for') || 'Unknown'}
+          IP Address: ${clientIP}
         </div>
         
         <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #dee2e6; font-size: 12px; color: #6c757d;">
