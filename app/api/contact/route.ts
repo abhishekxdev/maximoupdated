@@ -8,6 +8,10 @@ const resend = new Resend(process.env.RESEND_API_KEY || 're_DqSZhzVP_MKruoqTkirb
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
+  // Get headers at the very beginning before any async operations
+  const headersList = headers();
+  const clientIP = headersList.get('x-forwarded-for') || 'Unknown';
+
   try {
     const { name, phone, email, message } = await request.json();
 
@@ -31,10 +35,6 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-
-    // Get headers using Next.js headers() function
-    const headersList = headers();
-    const clientIP = headersList.get('x-forwarded-for') || 'Unknown';
 
     // Create HTML email content
     const htmlContent = `
