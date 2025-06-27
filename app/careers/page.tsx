@@ -71,20 +71,81 @@ export default function Careers() {
     setFormData(prev => ({ ...prev, [field]: value }))
   }
 
-  const positions = [
-    "Annotator",
-    "Team Lead",
-    "Project Manager", 
-    "Senior Manager",
-    "Associate Director"
+  const departments = [
+    {
+      name: "HR (HR Executive)",
+      roles: [
+        "HR Generalist",
+        "Payroll and Compliance Officer",
+        "Employee Relations Executive",
+        "HR Operations Coordinator",
+        "Onboarding Specialist",
+        "HRMS Administrator"
+      ]
+    },
+    {
+      name: "HR (Talent Acquisition)",
+      roles: [
+        "Recruitment Specialist",
+        "Technical Recruiter",
+        "Sourcing Executive",
+        "Candidate Screening Specialist",
+        "Employer Branding Coordinator"
+      ]
+    },
+    {
+      name: "IT Administrative",
+      roles: [
+        "IT Support Executive",
+        "Systems Administrator",
+        "Network & Security Officer",
+        "Application Support Analyst",
+        "Cloud Operations Assistant",
+        "Software License Coordinator",
+        "Junior Project Manager (IT Ops)",
+        "Senior Project Manager (Infrastructure)"
+      ]
+    },
+    {
+      name: "L&D (Trainer)",
+      roles: [
+        "Annotation Process Trainer",
+        "Tele Sales Coach",
+        "Customer Support Trainer",
+        "Soft Skills Trainer",
+        "Surveillance System Trainer",
+        "L&D Coordinator",
+        "Team Lead – Training",
+        "Associate Director – Learning & Development"
+      ]
+    },
+    {
+      name: "Project Management",
+      roles: [
+        "Junior Project Manager",
+        "Senior Project Manager",
+        "Team Lead – Projects",
+        "Associate Director – Projects"
+      ]
+    }
   ]
 
-  const departments = [
-    "HR (HR Executive)",
-    "HR (Talent Acquisition)",
-    "IT Administrative",
-    "L&D (Trainer)"
-  ]
+  // Get all unique positions from all departments
+  const getAllPositions = () => {
+    const allPositions: string[] = []
+    departments.forEach(dept => {
+      allPositions.push(...dept.roles)
+    })
+    return allPositions.sort()
+  }
+
+  // Get positions for selected department
+  const getPositionsForDepartment = (departmentName: string) => {
+    const department = departments.find(dept => dept.name === departmentName)
+    return department ? department.roles : []
+  }
+
+  const positions = getAllPositions()
 
   return (
     <div className="min-h-screen">
@@ -172,31 +233,42 @@ export default function Careers() {
                     />
                   </div>
 
-                  {/* Position Information */}
+                  {/* Department and Position Information */}
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="position">Position Applied For *</Label>
-                      <Select value={formData.position} onValueChange={(value) => handleInputChange('position', value)}>
+                      <Label htmlFor="department">Department *</Label>
+                      <Select 
+                        value={formData.department} 
+                        onValueChange={(value) => {
+                          handleInputChange('department', value)
+                          // Clear position when department changes
+                          handleInputChange('position', '')
+                        }}
+                      >
                         <SelectTrigger className="bg-white/80">
-                          <SelectValue placeholder="Select position" />
+                          <SelectValue placeholder="Select department" />
                         </SelectTrigger>
                         <SelectContent>
-                          {positions.map((pos, index) => (
-                            <SelectItem key={index} value={pos}>{pos}</SelectItem>
+                          {departments.map((dept, index) => (
+                            <SelectItem key={index} value={dept.name}>{dept.name}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="department">Department *</Label>
-                      <Select value={formData.department} onValueChange={(value) => handleInputChange('department', value)}>
+                      <Label htmlFor="position">Position Applied For *</Label>
+                      <Select 
+                        value={formData.position} 
+                        onValueChange={(value) => handleInputChange('position', value)}
+                        disabled={!formData.department}
+                      >
                         <SelectTrigger className="bg-white/80">
-                          <SelectValue placeholder="Select department" />
+                          <SelectValue placeholder={formData.department ? "Select position" : "Select department first"} />
                         </SelectTrigger>
                         <SelectContent>
-                          {departments.map((dept, index) => (
-                            <SelectItem key={index} value={dept}>{dept}</SelectItem>
+                          {formData.department && getPositionsForDepartment(formData.department).map((pos, index) => (
+                            <SelectItem key={index} value={pos}>{pos}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
