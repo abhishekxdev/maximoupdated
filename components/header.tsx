@@ -23,6 +23,14 @@ const menuItems = [
     },
     { name: 'Industries', href: '/industries' },
     { name: 'Why Choose Us', href: '/why-choose-us' },
+    { 
+        name: 'Resources', 
+        href: '/resources',
+        hasDropdown: true,
+        dropdownItems: [
+            { name: 'Careers', href: '/careers' }
+        ]
+    },
     { name: 'Contact', href: '/contact' },
 ]
 
