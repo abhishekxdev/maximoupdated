@@ -59,7 +59,6 @@ export default function TextAnnotation() {
       title: "Robotics",
       description: "Text annotations support navigation commands and contextual understanding, allowing robots to interact safely and intelligently with their environment.",
       icon: Bot,
-      emoji: "🤖",
       applications: ["Navigation Commands", "Contextual Understanding", "Human-Robot Interaction", "Safety Protocols"],
       image: "/robot3.png"
     },
@@ -67,7 +66,6 @@ export default function TextAnnotation() {
       title: "Autonomous Driving",
       description: "NLP-enabled annotations power systems that recognize and interpret traffic signs, voice commands, and written instructions across navigation interfaces.",
       icon: Car,
-      emoji: "🚘",
       applications: ["Traffic Sign Recognition", "Voice Commands", "Navigation Instructions", "Safety Systems"],
       image: "/Automotive.jpeg"
     },
@@ -75,7 +73,6 @@ export default function TextAnnotation() {
       title: "Healthcare",
       description: "From medical transcripts to clinical notes, annotated data helps AI understand medical language, enabling genetic research, predictive diagnostics, and surgical automation.",
       icon: Heart,
-      emoji: "🧬",
       applications: ["Medical Transcripts", "Clinical Notes", "Genetic Research", "Predictive Diagnostics"],
       image: "/healthcare.jpeg"
     },
@@ -83,7 +80,6 @@ export default function TextAnnotation() {
       title: "Retail & E-commerce",
       description: "Annotated product descriptions and customer reviews help AI personalize experiences, improve recommendation engines, and enhance customer engagement.",
       icon: ShoppingCart,
-      emoji: "🛍️",
       applications: ["Product Descriptions", "Customer Reviews", "Recommendation Engines", "Personalization"],
       image: "/retail.jpeg"
     },
@@ -91,15 +87,13 @@ export default function TextAnnotation() {
       title: "Autonomous Drones",
       description: "Text annotation supports backend AI training for autonomous aerial systems, improving their ability to read instructions, identify landmarks, and perform intelligent routing.",
       icon: Plane,
-      emoji: "🚁",
       applications: ["Instruction Reading", "Landmark Identification", "Intelligent Routing", "Mission Planning"],
-      image: "/survilleance.jpeg"
+      image: "/autonomousdrone.jpg"
     },
     {
       title: "Agriculture",
       description: "NLP-driven annotations combined with IoT sensor data help monitor crop conditions, forecast yields, and deliver real-time insights for smart farming.",
       icon: Tractor,
-      emoji: "🌾",
       applications: ["Crop Monitoring", "Yield Forecasting", "Smart Farming", "IoT Integration"],
       image: "/agriculture.jpeg"
     }
@@ -233,13 +227,14 @@ export default function TextAnnotation() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   <div className="absolute top-4 left-4">
-                    <div className="text-3xl">{useCase.emoji}</div>
+                    <div className="h-10 w-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center">
+                      <useCase.icon className="h-5 w-5 text-primary" />
+                    </div>
                   </div>
                 </div>
                 
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3 mb-3">
-                    <useCase.icon className="h-6 w-6 text-primary" />
                     <h3 className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
                       {useCase.title}
                     </h3>
