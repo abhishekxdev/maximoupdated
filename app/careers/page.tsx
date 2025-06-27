@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { CheckCircle, ArrowRight, Users, Globe, Heart, Zap, Upload, Send, Briefcase, MapPin, Clock, DollarSign } from 'lucide-react'
+import { CheckCircle, Send, Briefcase } from 'lucide-react'
 import { useState } from 'react'
 
 export default function Careers() {
@@ -16,11 +16,11 @@ export default function Careers() {
     email: '',
     phone: '',
     position: '',
+    department: '',
     experience: '',
-    location: '',
     expectedSalary: '',
-    coverLetter: '',
-    resume: null as File | null
+    resumeLink: '',
+    coverLetter: ''
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -31,17 +31,12 @@ export default function Careers() {
     setIsSubmitting(true)
     
     try {
-      // Create FormData for file upload
-      const formDataToSend = new FormData()
-      Object.entries(formData).forEach(([key, value]) => {
-        if (value !== null) {
-          formDataToSend.append(key, value)
-        }
-      })
-
       const response = await fetch('/api/careers', {
         method: 'POST',
-        body: formDataToSend,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       })
 
       const result = await response.json()
@@ -53,11 +48,11 @@ export default function Careers() {
           email: '',
           phone: '',
           position: '',
+          department: '',
           experience: '',
-          location: '',
           expectedSalary: '',
-          coverLetter: '',
-          resume: null
+          resumeLink: '',
+          coverLetter: ''
         })
       } else {
         setSubmitStatus('error')
@@ -76,83 +71,19 @@ export default function Careers() {
     setFormData(prev => ({ ...prev, [field]: value }))
   }
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null
-    setFormData(prev => ({ ...prev, resume: file }))
-  }
-
-  const openPositions = [
-    {
-      title: "Data Annotation Specialist",
-      department: "Data Services",
-      location: "Remote / Ranchi",
-      type: "Full-time",
-      experience: "1-3 years",
-      description: "Join our data annotation team to work on cutting-edge AI projects across various industries."
-    },
-    {
-      title: "Customer Support Representative",
-      department: "Customer Success",
-      location: "Remote / Ranchi",
-      type: "Full-time",
-      experience: "0-2 years",
-      description: "Provide exceptional customer support across multiple channels and help clients achieve their goals."
-    },
-    {
-      title: "Tele Sales Executive",
-      department: "Sales",
-      location: "Remote / Ranchi",
-      type: "Full-time",
-      experience: "1-4 years",
-      description: "Drive business growth through professional telemarketing and sales support services."
-    },
-    {
-      title: "Quality Assurance Analyst",
-      department: "Quality Control",
-      location: "Remote / Ranchi",
-      type: "Full-time",
-      experience: "2-5 years",
-      description: "Ensure the highest quality standards in our data annotation and processing services."
-    },
-    {
-      title: "Project Manager",
-      department: "Operations",
-      location: "Ranchi",
-      type: "Full-time",
-      experience: "3-6 years",
-      description: "Lead cross-functional teams to deliver exceptional results for our global clients."
-    },
-    {
-      title: "Business Development Executive",
-      department: "Sales",
-      location: "Remote / Ranchi",
-      type: "Full-time",
-      experience: "2-5 years",
-      description: "Identify new business opportunities and build strategic partnerships to drive company growth."
-    }
+  const positions = [
+    "Annotator",
+    "Team Lead",
+    "Project Manager", 
+    "Senior Manager",
+    "Associate Director"
   ]
 
-  const benefits = [
-    {
-      icon: Heart,
-      title: "Health & Wellness",
-      description: "Comprehensive health insurance and wellness programs for you and your family."
-    },
-    {
-      icon: Globe,
-      title: "Remote Work",
-      description: "Flexible work arrangements with remote work options and modern collaboration tools."
-    },
-    {
-      icon: Zap,
-      title: "Professional Growth",
-      description: "Continuous learning opportunities, skill development programs, and career advancement paths."
-    },
-    {
-      icon: Users,
-      title: "Team Culture",
-      description: "Collaborative, inclusive work environment with team building activities and recognition programs."
-    }
+  const departments = [
+    "HR (HR Executive)",
+    "HR (Talent Acquisition)",
+    "IT Administrative",
+    "L&D (Trainer)"
   ]
 
   return (
@@ -170,93 +101,6 @@ export default function Careers() {
             <p className="text-xl text-muted-foreground mb-8">
               Join a dynamic team that's transforming the future of AI and data services. We're looking for passionate individuals who want to make a meaningful impact in the world of artificial intelligence and business solutions.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Work With Us */}
-      <section className="py-24 section-bg">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <Badge variant="outline" className="mb-4">Why Choose Maximo</Badge>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal leading-tight tracking-tight mb-4 sm:mb-6 bg-gradient-to-r from-purple-900 to-indigo-600 bg-clip-text text-transparent">
-              More Than Just a Job
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              We believe in creating an environment where our team members can thrive, grow, and make a meaningful impact
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="text-center p-8 border-0 bg-white/60 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                <benefit.icon className="h-12 w-12 text-primary mx-auto mb-6" />
-                <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">{benefit.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{benefit.description}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Open Positions */}
-      <section className="py-24 section-bg">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <Badge variant="outline" className="mb-4">Open Positions</Badge>
-            <h2 className="text-4xl font-extrabold tracking-tight mb-4 bg-gradient-to-r from-purple-600 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
-              Current Opportunities
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Explore exciting career opportunities across different departments and find the perfect role for your skills and aspirations
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {openPositions.map((position, index) => (
-              <Card key={index} className="border-0 bg-white/60 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="h-10 w-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
-                      <Briefcase className="h-5 w-5 text-white" />
-                    </div>
-                    <Badge variant="secondary" className="text-xs bg-primary/10 text-primary border-primary/20">
-                      {position.department}
-                    </Badge>
-                  </div>
-                  
-                  <h3 className="text-xl font-bold mb-3 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-                    {position.title}
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed mb-6">
-                    {position.description}
-                  </p>
-                  
-                  <div className="space-y-3 mb-6">
-                    <div className="flex items-center text-sm text-gray-600">
-                      <MapPin className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
-                      {position.location}
-                    </div>
-                    <div className="flex items-center text-sm text-gray-600">
-                      <Clock className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
-                      {position.type}
-                    </div>
-                    <div className="flex items-center text-sm text-gray-600">
-                      <Users className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
-                      {position.experience}
-                    </div>
-                  </div>
-                  
-                  <Button 
-                    onClick={() => setFormData(prev => ({ ...prev, position: position.title }))}
-                    className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white rounded-full"
-                  >
-                    Apply Now
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
           </div>
         </div>
       </section>
@@ -315,33 +159,17 @@ export default function Careers() {
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="phone">Phone Number *</Label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        value={formData.phone}
-                        onChange={(e) => handleInputChange('phone', e.target.value)}
-                        placeholder="Enter your phone number"
-                        required
-                        className="bg-white/80"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="location">Preferred Location *</Label>
-                      <Select value={formData.location} onValueChange={(value) => handleInputChange('location', value)}>
-                        <SelectTrigger className="bg-white/80">
-                          <SelectValue placeholder="Select preferred location" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="remote">Remote</SelectItem>
-                          <SelectItem value="ranchi">Ranchi Office</SelectItem>
-                          <SelectItem value="hybrid">Hybrid (Remote + Office)</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone Number *</Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => handleInputChange('phone', e.target.value)}
+                      placeholder="Enter your phone number"
+                      required
+                      className="bg-white/80"
+                    />
                   </div>
 
                   {/* Position Information */}
@@ -353,29 +181,42 @@ export default function Careers() {
                           <SelectValue placeholder="Select position" />
                         </SelectTrigger>
                         <SelectContent>
-                          {openPositions.map((pos, index) => (
-                            <SelectItem key={index} value={pos.title}>{pos.title}</SelectItem>
+                          {positions.map((pos, index) => (
+                            <SelectItem key={index} value={pos}>{pos}</SelectItem>
                           ))}
-                          <SelectItem value="other">Other Position</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="experience">Years of Experience *</Label>
-                      <Select value={formData.experience} onValueChange={(value) => handleInputChange('experience', value)}>
+                      <Label htmlFor="department">Department *</Label>
+                      <Select value={formData.department} onValueChange={(value) => handleInputChange('department', value)}>
                         <SelectTrigger className="bg-white/80">
-                          <SelectValue placeholder="Select experience level" />
+                          <SelectValue placeholder="Select department" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="0-1">0-1 years (Fresher)</SelectItem>
-                          <SelectItem value="1-3">1-3 years</SelectItem>
-                          <SelectItem value="3-5">3-5 years</SelectItem>
-                          <SelectItem value="5-8">5-8 years</SelectItem>
-                          <SelectItem value="8+">8+ years</SelectItem>
+                          {departments.map((dept, index) => (
+                            <SelectItem key={index} value={dept}>{dept}</SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                     </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="experience">Years of Experience *</Label>
+                    <Select value={formData.experience} onValueChange={(value) => handleInputChange('experience', value)}>
+                      <SelectTrigger className="bg-white/80">
+                        <SelectValue placeholder="Select experience level" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="0-1">0-1 years (Fresher)</SelectItem>
+                        <SelectItem value="1-3">1-3 years</SelectItem>
+                        <SelectItem value="3-5">3-5 years</SelectItem>
+                        <SelectItem value="5-8">5-8 years</SelectItem>
+                        <SelectItem value="8+">8+ years</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
 
                   <div className="space-y-2">
@@ -389,21 +230,19 @@ export default function Careers() {
                     />
                   </div>
 
-                  {/* Resume Upload */}
+                  {/* Resume Link */}
                   <div className="space-y-2">
-                    <Label htmlFor="resume">Resume/CV *</Label>
-                    <div className="flex items-center gap-4">
-                      <Input
-                        id="resume"
-                        type="file"
-                        accept=".pdf,.doc,.docx"
-                        onChange={handleFileChange}
-                        required
-                        className="bg-white/80"
-                      />
-                      <Upload className="h-5 w-5 text-gray-400" />
-                    </div>
-                    <p className="text-xs text-gray-500">Accepted formats: PDF, DOC, DOCX (Max 5MB)</p>
+                    <Label htmlFor="resumeLink">Resume Google Drive Link *</Label>
+                    <Input
+                      id="resumeLink"
+                      type="url"
+                      value={formData.resumeLink}
+                      onChange={(e) => handleInputChange('resumeLink', e.target.value)}
+                      placeholder="https://drive.google.com/file/d/..."
+                      required
+                      className="bg-white/80"
+                    />
+                    <p className="text-xs text-gray-500">Please ensure the Google Drive link is publicly accessible</p>
                   </div>
 
                   {/* Cover Letter */}
@@ -437,7 +276,7 @@ export default function Careers() {
 
                     <Button 
                       type="submit" 
-                      disabled={isSubmitting || !formData.fullName || !formData.email || !formData.phone || !formData.position || !formData.experience || !formData.location || !formData.coverLetter || !formData.resume}
+                      disabled={isSubmitting || !formData.fullName || !formData.email || !formData.phone || !formData.position || !formData.department || !formData.experience || !formData.coverLetter || !formData.resumeLink}
                       className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-white px-8 py-4 rounded-full shadow-lg text-lg font-semibold group"
                     >
                       {isSubmitting ? (
