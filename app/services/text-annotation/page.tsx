@@ -35,26 +35,22 @@ export default function TextAnnotation() {
     {
       title: "Text Categorization",
       description: "Commonly used in search engines, document classification, and NLP applications. We support both manual and automated text classification to help models detect themes and intent across varied content types.",
-      applications: ["Search Engines", "Document Classification", "Content Filtering", "Theme Detection"],
-      image: "/textan.jpeg"
+      applications: ["Search Engines", "Document Classification", "Content Filtering", "Theme Detection"]
     },
     {
       title: "Semantic Annotation",
       description: "Enhances machine understanding of language by providing context and meaning. Our annotations help models grasp nuanced language patterns, improving prediction accuracy in complex NLP tasks.",
-      applications: ["Context Understanding", "Language Patterns", "Sentiment Analysis", "Meaning Extraction"],
-      image: "/textan.jpeg"
+      applications: ["Context Understanding", "Language Patterns", "Sentiment Analysis", "Meaning Extraction"]
     },
     {
       title: "Phrase Chunking",
       description: "We segment sentences into meaningful phrases to aid in syntactic and semantic understanding. This technique is essential for preprocessing and boosts NLP model performance in tasks like translation and sentiment analysis.",
-      applications: ["Syntactic Analysis", "Translation", "Sentiment Analysis", "Text Preprocessing"],
-      image: "/textan.jpeg"
+      applications: ["Syntactic Analysis", "Translation", "Sentiment Analysis", "Text Preprocessing"]
     },
     {
       title: "Entity Linking",
       description: "We map entities in the text to structured knowledge bases, enhancing the contextual understanding of content. This process significantly improves performance in tasks like document classification and knowledge graph building.",
-      applications: ["Knowledge Graphs", "Document Classification", "Entity Recognition", "Content Mapping"],
-      image: "/textan.jpeg"
+      applications: ["Knowledge Graphs", "Document Classification", "Entity Recognition", "Content Mapping"]
     }
   ]
 
@@ -182,32 +178,22 @@ export default function TextAnnotation() {
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {annotationTechniques.map((technique, index) => (
               <Card key={index} className="border-0 bg-white/60 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                <div className="relative h-48 overflow-hidden rounded-t-xl">
-                  <Image
-                    src={technique.image}
-                    alt={technique.title}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute top-4 left-4">
-                    <div className="h-10 w-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center">
-                      <FileText className="h-5 w-5 text-primary" />
+                <CardContent className="p-8">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="h-12 w-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center flex-shrink-0">
+                      <FileText className="h-6 w-6 text-white" />
                     </div>
+                    <h3 className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                      {technique.title}
+                    </h3>
                   </div>
-                </div>
-                
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-3 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-                    {technique.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                  <p className="text-gray-700 leading-relaxed mb-6">
                     {technique.description}
                   </p>
                   
                   <div>
-                    <h4 className="font-semibold mb-2 text-sm text-gray-800">Applications</h4>
-                    <div className="flex flex-wrap gap-1">
+                    <h4 className="font-semibold mb-3 text-gray-800">Applications</h4>
+                    <div className="flex flex-wrap gap-2">
                       {technique.applications.map((app, idx) => (
                         <Badge key={idx} variant="secondary" className="text-xs bg-primary/10 text-primary border-primary/20">
                           {app}
