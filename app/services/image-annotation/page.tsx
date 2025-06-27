@@ -46,7 +46,7 @@ export default function ImageAnnotation() {
       icon: Box,
       emoji: "📦",
       applications: ["Automotive", "Robotics", "AR/VR", "Spatial Analysis"],
-      image: "/3dcloud.jpeg"
+      image: "/3Dcuboid.jpg"
     },
     {
       title: "Landmark Annotation",
@@ -54,7 +54,7 @@ export default function ImageAnnotation() {
       icon: MapPin,
       emoji: "📍",
       applications: ["Facial Recognition", "Emotion Detection", "Biometrics", "Medical Imaging"],
-      image: "/healthcare.jpeg"
+      image: "/landmark.jpg"
     },
     {
       title: "Skeletal Annotation",
@@ -62,7 +62,7 @@ export default function ImageAnnotation() {
       icon: Activity,
       emoji: "🦴",
       applications: ["Health-tech", "Motion Analysis", "Fitness AI", "Rehabilitation"],
-      image: "/team.jpeg"
+      image: "/skeletal.jpg"
     },
     {
       title: "Polygon Annotation",
@@ -70,7 +70,7 @@ export default function ImageAnnotation() {
       icon: Layers,
       emoji: "🔺",
       applications: ["Image Segmentation", "Product Labeling", "Environmental Analysis", "Complex Objects"],
-      image: "/retail.jpeg"
+      image: "/polygon.jpg"
     },
     {
       title: "Semantic Segmentation",
@@ -78,7 +78,7 @@ export default function ImageAnnotation() {
       icon: Palette,
       emoji: "🌈",
       applications: ["Autonomous Vehicles", "Agricultural AI", "Medical Imaging", "Pixel-level Analysis"],
-      image: "/Automotive.jpeg"
+      image: "/semantic.jpg"
     },
     {
       title: "Polyline Annotation",
@@ -86,7 +86,7 @@ export default function ImageAnnotation() {
       icon: Minus,
       emoji: "➖",
       applications: ["Lane Detection", "Path Planning", "Navigation", "Infrastructure Mapping"],
-      image: "/agriculture.jpeg"
+      image: "/polyline.jpg"
     }
   ]
 
