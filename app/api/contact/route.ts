@@ -89,7 +89,7 @@ export async function POST(request: NextRequest) {
     // Send email using Resend
     const data = await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to: ['abhishekxbiz@gmail.com'],
+      to: ['info@max-imo.com'],
       subject: `New Contact Form Submission from ${name}`,
       html: htmlContent,
       replyTo: email,
@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
     
     return NextResponse.json(
       { 
-        error: 'Sorry, there was an error sending your message. Please try again or contact us directly.',
+        error: 'Sorry, there was an error sending your message. Please try again or contact us directly. Contact at info@max-imo.com',
         details: error instanceof Error ? error.message : 'Unknown error'
       },
       { status: 500 }
