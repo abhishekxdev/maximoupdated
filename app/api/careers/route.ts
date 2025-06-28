@@ -127,7 +127,7 @@ export async function POST(request: NextRequest) {
     // Send email using Resend
     const emailData = await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to: ['abhishekxbiz@gmail.com'],
+      to: ['info@max-imo.com'],
       subject: `New Job Application: ${position} - ${fullName}`,
       html: htmlContent,
       replyTo: email,
@@ -153,7 +153,7 @@ export async function POST(request: NextRequest) {
     
     return NextResponse.json(
       { 
-        error: 'Sorry, there was an error submitting your application. Please try again or email us directly at careers@max-imo.com',
+        error: 'Sorry, there was an error submitting your application. Please try again or email us directly at info@max-imo.com',
         details: error instanceof Error ? error.message : 'Unknown error'
       },
       { status: 500 }
