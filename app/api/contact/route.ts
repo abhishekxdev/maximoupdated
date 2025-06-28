@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY || 're_DqSZhzVP_MKruoqTkirbwRKSAidL48jBq');
+const resend = new Resend(process.env.RESEND_API_KEY || 're_agmupyfK_5tNvhpqgMu98cgzgHeThTcYM');
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     const { name, phone, email, message } = await request.json();
 
     // Debug: Log the API key (first few characters only)
-    const apiKey = process.env.RESEND_API_KEY || 're_DqSZhzVP_MKruoqTkirbwRKSAidL48jBq';
+    const apiKey = process.env.RESEND_API_KEY || 're_agmupyfK_5tNvhpqgMu98cgzgHeThTcYM';
     console.log('API Key available:', apiKey ? `${apiKey.substring(0, 10)}...` : 'No API key');
 
     // Validate required fields
@@ -83,7 +83,7 @@ export async function POST(request: NextRequest) {
 
     console.log('Attempting to send email...');
     console.log('From:', 'Maximo Solutions <onboarding@resend.dev>');
-    console.log('To:', ['abhishekxbiz@gmail.com']);
+    console.log('To:', ['info@max-imo.com']);
     console.log('Subject:', `New Contact Form Submission from ${name}`);
 
     // Send email using Resend
@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
     
     return NextResponse.json(
       { 
-        error: 'Sorry, there was an error sending your message. Please try again or contact us directly. Contact at info@max-imo.com',
+        error: 'Sorry, there was an error sending your message. Please try again or contact us directly at info@max-imo.com',
         details: error instanceof Error ? error.message : 'Unknown error'
       },
       { status: 500 }

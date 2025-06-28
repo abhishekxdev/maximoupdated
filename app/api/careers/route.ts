@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY || 're_V8rGhFu2_2tjRMxcyArnKghSokfcJ2Jum');
+const resend = new Resend(process.env.RESEND_API_KEY || 're_agmupyfK_5tNvhpqgMu98cgzgHeThTcYM');
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     const { fullName, email, phone, position, department, experience, expectedSalary, resumeLink, coverLetter } = data;
 
     // Debug: Log the API key (first few characters only)
-    const apiKey = process.env.RESEND_API_KEY || 're_V8rGhFu2_2tjRMxcyArnKghSokfcJ2Jum';
+    const apiKey = process.env.RESEND_API_KEY || 're_agmupyfK_5tNvhpqgMu98cgzgHeThTcYM';
     console.log('API Key available:', apiKey ? `${apiKey.substring(0, 10)}...` : 'No API key');
 
     // Validate required fields
@@ -121,7 +121,7 @@ export async function POST(request: NextRequest) {
 
     console.log('Attempting to send career application email...');
     console.log('From:', 'Maximo Careers <onboarding@resend.dev>');
-    console.log('To:', ['abhishekxbiz@gmail.com']);
+    console.log('To:', ['info@max-imo.com']);
     console.log('Subject:', `New Job Application: ${position} - ${fullName}`);
 
     // Send email using Resend
