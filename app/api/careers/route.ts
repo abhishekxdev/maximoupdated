@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     const { fullName, email, phone, position, department, experience, expectedSalary, resumeLink, coverLetter } = data;
 
     // Debug: Log the API key (first few characters only)
-    const apiKey = process.env.RESEND_API_KEY || 're_agmupyfK_5tNvhpqgMu98cgzgHeThTcYM';
+    const apiKey = process.env.RESEND_API_KEY || '';
     console.log('API Key available:', apiKey ? `${apiKey.substring(0, 10)}...` : 'No API key');
 
     // Validate required fields
