@@ -207,8 +207,7 @@ export default function Contact() {
                       <div>
                         <h4 className="font-semibold mb-1">REGD. OFFICE</h4>
                         <p className="text-gray-700">
-                          1204 Block-F Gauri, Savitri Heritage Bahu Bazar,<br />
-                          Kantatoli, Ranchi, Jharkhand, India, 834001
+                         India
                         </p>
                       </div>
                     </div>
@@ -216,9 +215,8 @@ export default function Contact() {
                       <Phone className="h-6 w-6 flex-shrink-0 mt-1 text-primary" />
                       <div>
                         <h4 className="font-semibold mb-1">Contact</h4>
-                        <p className="text-gray-700">+91 9900199001</p>
-                        <p className="text-gray-700">+91 9952632404</p>
-                        <p className="text-gray-700">+91 9952632404</p>
+                        <p className="text-gray-700">+91 99000000000</p>
+                       
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
